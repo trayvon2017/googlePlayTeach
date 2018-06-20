@@ -10,6 +10,7 @@
     <Button
         android:background="@drawable/btn_bg_selector"
         android:layout_marginTop="5dp"
+        android:padding="2dp"
         android:text="加载数据失败，请重试"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 
 import com.example.cfb.googleplaytech.R;
+import com.example.cfb.googleplaytech.ui.fragment.BaseFragment;
 import com.example.cfb.googleplaytech.ui.fragment.FragmentFactory;
 import com.example.cfb.googleplaytech.ui.view.PagerTab;
 import com.example.cfb.googleplaytech.utils.UIUtils;
@@ -28,6 +30,24 @@ public class MainActivity extends BaseActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
         mPagerTab.setViewPager(mViewPager);
+        mPagerTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                BaseFragment baseFragment = FragmentFactory.creatFragment(position);
+                Log.d("listener", "getItem: fragment"+position+"-"+baseFragment);
+                baseFragment.loadData();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
@@ -43,8 +63,10 @@ public class MainActivity extends BaseActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return FragmentFactory.creatFragment(position);
+        public BaseFragment getItem(int position) {
+            BaseFragment baseFragment = FragmentFactory.creatFragment(position);
+            Log.d("mainActivity", "getItem: fragment"+position+"-"+baseFragment);
+            return baseFragment;
         }
 
         @Override

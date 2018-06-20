@@ -43,6 +43,7 @@ public  class FragmentFactory {
                     baseFragment = null;
                     break;
             }
+            mFragments.put(position,baseFragment);
         }
 
 
