@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cfb.googleplaytech.ui.activity.MainActivity">
+    <com.example.cfb.googleplaytech.ui.view.PagerTab
+        android:id="@+id/pager_tab"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@drawable/bg_tab"
+        >
+    </com.example.cfb.googleplaytech.ui.view.PagerTab>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
