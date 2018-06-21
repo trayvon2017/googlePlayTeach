@@ -35,8 +35,16 @@ public abstract class BaseFragment extends Fragment {
         return mLoadingPage;
     }
 
+    /**
+     * 运行在子线程,向服务器请求数据,然后返回状态值
+     * @return RESULT_ERROR请求失败  ; RESULT_EMPTY 空数据;RESULT_SUCCESS请求成功
+     */
     public abstract LoadingPage.LoadResult onLoad();
 
+    /**
+     *
+     * @return 加载当前fragment对象对应的视图
+     */
     public abstract View onCreateSuccessView();
 
     /**

@@ -48,6 +48,9 @@ public abstract class LoadingPage extends FrameLayout {
 
     }
 
+    /**
+     * 初始化三个公用视图
+     */
     private void initView() {
         //未加载和加载中页面
         if (mLoadingView == null) {
@@ -69,6 +72,13 @@ public abstract class LoadingPage extends FrameLayout {
         showCorrect();
     }
 
+    /**
+     * 根据当前mCurrentState的值来展示fragment页面
+     * STATE_UNDO和STATE_LOADING  只展示mLoadingView
+     * STATE_ERROR  只展示mErrorView
+     * STATE_EMPTY  只展示mEmptyView
+     * STATE_SUCCESS 只展示 mSuccessView
+     */
     private void showCorrect() {
         mLoadingView.setVisibility(currenrState == STATE_UNDO || currenrState == STATE_LOADING ?
                 VISIBLE : GONE);
@@ -109,7 +119,14 @@ public abstract class LoadingPage extends FrameLayout {
         }*/
     }
 
+    /**
+     * @return加载请求成功数据页面的视图
+     */
     public abstract View onCreateSuccessView();
+
+    /**
+     * 请求数据,并根据返回值更新当前fragment的视图
+     */
     public void loadData(){
         new Thread(new Runnable() {
             @Override
@@ -136,6 +153,11 @@ public abstract class LoadingPage extends FrameLayout {
      */
     public abstract LoadResult onLoad();
 
+    /**
+     * 枚举值,请求数据失败:RESULT_ERROR
+     * RESULT_EMPTY :空数据
+     * RESULT_SUCCESS:请求成功
+     */
     public enum LoadResult{
         RESULT_ERROR(STATE_ERROR),
         RESULT_EMPTY(STATE_EMPTY),
