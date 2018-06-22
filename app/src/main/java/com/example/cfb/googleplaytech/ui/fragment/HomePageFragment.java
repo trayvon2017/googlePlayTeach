@@ -14,6 +14,7 @@ import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomePageHolder;
 import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
+import com.example.cfb.googleplaytech.ui.view.MyListView;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -31,23 +32,17 @@ public class HomePageFragment extends BaseFragment {
     public LoadingPage.LoadResult onLoad() {
         HomePageProtocol homePageProtocol = new HomePageProtocol();
         data = homePageProtocol.getData(0);
-        if (data!=null){
-            return LoadingPage.LoadResult.RESULT_SUCCESS;
-        }
-       /* // TODO: 2018/6/22 加载数据
-        for (int i =0;i<20;i++){
-            strs[i] = "text数据"+i;
-            mArraylist.add("text数据"+i);
-        }*/
-        return LoadingPage.LoadResult.RESULT_ERROR;
+
+        return checkData(data);
     }
 
     @Override
     public View onCreateSuccessView() {
-        ListView listView = new ListView(UIUtils.getContext());
+        MyListView listView = new MyListView(UIUtils.getContext());
         listView.setAdapter(new MyAdapter(data));
-        TextView textView = new TextView(UIUtils.getContext());
-        textView.setText(getClass().getSimpleName());
+//        listView.setDivider(null);
+       /* TextView textView = new TextView(UIUtils.getContext());
+        textView.setText(getClass().getSimpleName());*/
         return listView;
     }
 
@@ -66,7 +61,7 @@ public class HomePageFragment extends BaseFragment {
         @Override
         public ArrayList<AppInfo> onLoadMore() {
             HomePageProtocol homePageProtocol = new HomePageProtocol();
-            ArrayList<AppInfo> moreData = homePageProtocol.getData(HomePageFragment.this.data.size());
+            ArrayList<AppInfo> moreData = homePageProtocol.getData(getListSize());
             /*ArrayList<String> list= new ArrayList<String>();
             for (int i=0;i<10;i++){
                 list.add("moreData"+i);

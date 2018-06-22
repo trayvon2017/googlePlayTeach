@@ -1,7 +1,11 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
 
+import android.util.Log;
+
 import java.util.HashMap;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by cfb on 2018/6/20.
@@ -13,6 +17,7 @@ public  class FragmentFactory {
 
     public static BaseFragment creatFragment(int position) {
         BaseFragment baseFragment = mFragments.get(position);
+
         if (baseFragment == null) {
             switch (position) {
                 case 0:
@@ -43,6 +48,7 @@ public  class FragmentFactory {
                     baseFragment = null;
                     break;
             }
+            Log.d(TAG, "creatFragment: 新建了fragment:"+baseFragment.getClass().getSimpleName());
             mFragments.put(position,baseFragment);
         }
 

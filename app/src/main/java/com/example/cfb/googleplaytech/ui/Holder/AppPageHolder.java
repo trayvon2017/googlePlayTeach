@@ -1,6 +1,5 @@
 package com.example.cfb.googleplaytech.ui.Holder;
 
-import android.media.Rating;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import com.lidroid.xutils.BitmapUtils;
  * Created by fbfatboy on 2018/6/21.
  */
 
-public class HomePageHolder extends BaseHolder<AppInfo> {
+public class AppPageHolder extends BaseHolder<AppInfo> {
 
     private TextView mTvText;
     private ImageView mAppIcon;
@@ -40,7 +39,6 @@ public class HomePageHolder extends BaseHolder<AppInfo> {
         BitmapUtils bitmapUtils = BitmapHelper.getBitmapUtils();
         bitmapUtils.display(mAppIcon, HttpHelper.URL + "image?name="
                 + data.iconUrl);
-        mRb.setRating(data.stars);
     }
 
     @Override

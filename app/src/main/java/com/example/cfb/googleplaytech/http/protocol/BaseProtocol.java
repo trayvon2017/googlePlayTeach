@@ -25,9 +25,9 @@ public abstract class BaseProtocol<T> {
     public T getData(int index){
         String cache = getCache(index);
         Log.d(TAG, "getData: cache"+cache);
-        if (StringUtils.isEmpty(cache)){
+        /*if (StringUtils.isEmpty(cache)){
             cache = getDataFromServer(index);
-        }
+        }*/
         if (!StringUtils.isEmpty(cache)){
             return processJson(cache);
         }
@@ -37,7 +37,7 @@ public abstract class BaseProtocol<T> {
     private String getCache(int index) {
         String subsURL = getSubUrl(index);
         String path = UIUtils.getContext().getCacheDir().getPath();
-        File file = new File(path, subsURL);
+        File file = new File(path, getKey()+subsURL);
         if (file.exists()){
             BufferedReader reader = null;
             try {
@@ -93,7 +93,7 @@ public abstract class BaseProtocol<T> {
      */
     private void saveCache(String json, String subsURL) {
         String path = UIUtils.getContext().getCacheDir().getPath();
-        File file = new File(path, subsURL);
+        File file = new File(path, getKey()+subsURL);
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);

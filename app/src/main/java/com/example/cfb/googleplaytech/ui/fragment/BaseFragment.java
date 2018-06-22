@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by cfb on 2018/6/20.
  */
@@ -40,6 +42,18 @@ public abstract class BaseFragment extends Fragment {
      * @return RESULT_ERROR请求失败  ; RESULT_EMPTY 空数据;RESULT_SUCCESS请求成功
      */
     public abstract LoadingPage.LoadResult onLoad();
+
+    public LoadingPage.LoadResult checkData(ArrayList list){
+        if (list!=null){
+            return LoadingPage.LoadResult.RESULT_SUCCESS;
+        }
+       /* // TODO: 2018/6/22 加载数据
+        for (int i =0;i<20;i++){
+            strs[i] = "text数据"+i;
+            mArraylist.add("text数据"+i);
+        }*/
+        return LoadingPage.LoadResult.RESULT_ERROR;
+    }
 
     /**
      *

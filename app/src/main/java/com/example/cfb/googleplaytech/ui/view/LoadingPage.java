@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,13 @@ public abstract class LoadingPage extends FrameLayout {
         //加载失败
         if (mErrorView == null) {
             mErrorView = UIUtils.inflate(R.layout.error_page_layout);
+            Button mBtnLoad = (Button) mErrorView.findViewById(R.id.btn_reload);
+            mBtnLoad.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadData();
+                }
+            });
             addView(mErrorView);
         }
 

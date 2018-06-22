@@ -82,7 +82,7 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
     /**
      * @return true表示当前页面有更多数据, false反之
      */
-    private boolean hasMore() {
+    public boolean hasMore() {
         return true;
     }
 
@@ -134,6 +134,8 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
      * @return 加载到的数据
      */
     public abstract ArrayList<T> onLoadMore();
-
+    public int getListSize(){
+        return mData.size();
+    }
 
 }

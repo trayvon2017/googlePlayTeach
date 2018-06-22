@@ -38,9 +38,12 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                BaseFragment baseFragment = FragmentFactory.creatFragment(position);
-                Log.d("listener", "getItem: fragment"+position+"-"+baseFragment);
-                baseFragment.loadData();
+                if (position == 0){
+                    BaseFragment baseFragment = FragmentFactory.creatFragment(position);
+                    Log.d("listener", "getItem: fragment"+position+"-"+baseFragment);
+                    baseFragment.loadData();
+                }
+
             }
 
             @Override
@@ -65,6 +68,7 @@ public class MainActivity extends BaseActivity {
         @Override
         public BaseFragment getItem(int position) {
             BaseFragment baseFragment = FragmentFactory.creatFragment(position);
+            // TODO: 2018/6/23 测试0623
             Log.d("mainActivity", "getItem: fragment"+position+"-"+baseFragment);
             return baseFragment;
         }
