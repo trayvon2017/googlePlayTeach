@@ -25,9 +25,9 @@ public abstract class BaseProtocol<T> {
     public T getData(int index){
         String cache = getCache(index);
         Log.d(TAG, "getData: cache"+cache);
-        /*if (StringUtils.isEmpty(cache)){
+        if (StringUtils.isEmpty(cache)){
             cache = getDataFromServer(index);
-        }*/
+        }
         if (!StringUtils.isEmpty(cache)){
             return processJson(cache);
         }
@@ -92,22 +92,24 @@ public abstract class BaseProtocol<T> {
      * @param subsURL
      */
     private void saveCache(String json, String subsURL) {
-        String path = UIUtils.getContext().getCacheDir().getPath();
-        File file = new File(path, getKey()+subsURL);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(file);
-            //设置有效期
-            long deadLine = System.currentTimeMillis()+30*60*100;
-            writer.write(deadLine+"\n");
-            writer.write(json);
+        if (!StringUtils.isEmpty(json)) {
+            String path = UIUtils.getContext().getCacheDir().getPath();
+            File file = new File(path, getKey() + subsURL);
+            FileWriter writer = null;
+            try {
+                writer = new FileWriter(file);
+                //设置有效期
+                long deadLine = System.currentTimeMillis() + 30 * 60 * 100;
+                writer.write(deadLine + "\n");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            IOUtils.close(writer);
+                writer.write(json);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                IOUtils.close(writer);
+            }
         }
-
     }
 
     /**

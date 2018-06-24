@@ -38,11 +38,11 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0){
+
                     BaseFragment baseFragment = FragmentFactory.creatFragment(position);
                     Log.d("listener", "getItem: fragment"+position+"-"+baseFragment);
                     baseFragment.loadData();
-                }
+
 
             }
 

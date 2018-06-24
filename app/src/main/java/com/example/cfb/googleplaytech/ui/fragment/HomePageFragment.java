@@ -1,21 +1,27 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
 import android.os.SystemClock;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.cfb.googleplaytech.R;
 import com.example.cfb.googleplaytech.domain.AppInfo;
+import com.example.cfb.googleplaytech.http.HttpHelper;
 import com.example.cfb.googleplaytech.http.protocol.HomePageProtocol;
 import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomePageHolder;
 import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.ui.view.MyListView;
+import com.example.cfb.googleplaytech.utils.BitmapHelper;
 import com.example.cfb.googleplaytech.utils.UIUtils;
+import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
 
@@ -45,7 +51,6 @@ public class HomePageFragment extends BaseFragment {
         textView.setText(getClass().getSimpleName());*/
         return listView;
     }
-
     private class MyAdapter extends MybaseAdapter<AppInfo>{
 
 
@@ -62,15 +67,14 @@ public class HomePageFragment extends BaseFragment {
         public ArrayList<AppInfo> onLoadMore() {
             HomePageProtocol homePageProtocol = new HomePageProtocol();
             ArrayList<AppInfo> moreData = homePageProtocol.getData(getListSize());
-            /*ArrayList<String> list= new ArrayList<String>();
+            ArrayList<String> list= new ArrayList<String>();
             for (int i=0;i<10;i++){
                 list.add("moreData"+i);
-            }*/
+            }
             SystemClock.sleep(2000);
             return moreData;
         }
 
 
     }
-
 }

@@ -65,7 +65,7 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
             }
             return moreHolder.itemView;
         } else {
-            BaseHolder holder = null;
+            BaseHolder holder;
             if (convertView == null) {
                 holder = initHolder();
                 convertView = holder.itemView;

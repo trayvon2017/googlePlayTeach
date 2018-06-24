@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 自定义属性的 属性名字 以及属性值数据类型 -->
+    <attr name="ratio" format="float"/>
+    <!-- 声明,name为自定义属性所在的自定义view的类名 -->
+    <declare-styleable name="AutoRatioFramlayout">
+        <!-- 属性名 -->
+        <attr name="ratio" />
+    </declare-styleable>
+</resources>

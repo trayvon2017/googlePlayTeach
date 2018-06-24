@@ -38,13 +38,13 @@ public class SubjectPageFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
 
-        /*MyListView listView = new MyListView(UIUtils.getContext());
+        MyListView listView = new MyListView(UIUtils.getContext());
 
-        listView.setAdapter(new SubjectAdapter(mSubjectInfos));*/
-
-        TextView textView = new TextView(UIUtils.getContext());
-        textView.setText(getClass().getSimpleName());
-        return textView;
+        listView.setAdapter(new SubjectAdapter(mSubjectInfos));
+        //test使用的
+        /*TextView textView = new TextView(UIUtils.getContext());
+        textView.setText(getClass().getSimpleName());*/
+        return listView;
     }
     class SubjectAdapter extends MybaseAdapter<SubjectInfo>{
 
@@ -64,9 +64,6 @@ public class SubjectPageFragment extends BaseFragment {
             return moreData;
         }
 
-        @Override
-        public boolean hasMore() {
-            return false;
-        }
+
     }
 }

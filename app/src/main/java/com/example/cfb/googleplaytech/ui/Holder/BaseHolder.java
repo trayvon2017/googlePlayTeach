@@ -16,8 +16,8 @@ public abstract class BaseHolder<T> {
     public BaseHolder(){
         Log.d(TAG, "BaseHolder: "+getClass().getSimpleName());
         itemView = initItemView();
-        itemView.setTag(this);
         findViewById();
+        itemView.setTag(this);
     }
 
     protected abstract View initItemView();

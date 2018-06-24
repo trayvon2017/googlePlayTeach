@@ -32,8 +32,8 @@ public class SubjectPageHolder extends BaseHolder<SubjectInfo> {
 
     @Override
     public void setData(SubjectInfo data) {
-//        BitmapUtils bitmapUtils = BitmapHelper.getBitmapUtils();
-        BitmapUtils bitmapUtils = new BitmapUtils(UIUtils.getContext());
+        BitmapUtils bitmapUtils = BitmapHelper.getBitmapUtils();
+//        BitmapUtils bitmapUtils = new BitmapUtils(UIUtils.getContext());
         bitmapUtils.display(mSubjectImage,HttpHelper.URL + "image?name="
                 + data.url);
         mSubjectDes.setText(data.des);

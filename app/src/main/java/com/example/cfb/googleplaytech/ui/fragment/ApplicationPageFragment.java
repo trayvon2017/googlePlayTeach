@@ -34,12 +34,12 @@ public class ApplicationPageFragment extends BaseFragment {
 
     @Override
     public View onCreateSuccessView() {
-        /*MyListView listView = new MyListView(UIUtils.getContext());
-        listView.setAdapter(new MyAppAdapter(mApps));*/
-
-        TextView textView = new TextView(UIUtils.getContext());
-        textView.setText(getClass().getSimpleName());
-        return textView;
+        MyListView listView = new MyListView(UIUtils.getContext());
+        listView.setAdapter(new MyAppAdapter(mApps));
+        //test使用的
+        /*TextView textView = new TextView(UIUtils.getContext());
+        textView.setText(getClass().getSimpleName());*/
+        return listView;
     }
     class MyAppAdapter extends MybaseAdapter<AppInfo>{
 
