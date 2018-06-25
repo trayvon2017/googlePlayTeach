@@ -35,7 +35,9 @@ public class AutoRatioFramlayout extends FrameLayout {
 
     }
 
-
+    public void setmRatio(float mRatio) {
+        this.mRatio = mRatio;
+    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

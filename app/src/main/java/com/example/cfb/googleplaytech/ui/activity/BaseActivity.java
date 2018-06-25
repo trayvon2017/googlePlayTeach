@@ -14,5 +14,11 @@ import com.example.cfb.googleplaytech.R;
  */
 
 public class BaseActivity extends AppCompatActivity {
-
+    public void showActionBarLogo() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.mipmap.ic_launcher);//设置logo的图标
+        actionBar.setDisplayUseLogoEnabled(true);//设置logo可以显示
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
 }
+

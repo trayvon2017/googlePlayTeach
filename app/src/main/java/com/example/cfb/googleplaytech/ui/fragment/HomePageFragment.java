@@ -1,13 +1,17 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.cfb.googleplaytech.domain.AppInfo;
 import com.example.cfb.googleplaytech.http.protocol.HomePageProtocol;
 import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomeHeaderHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomePageHolder;
+import com.example.cfb.googleplaytech.ui.activity.AppDetailActivity;
+import com.example.cfb.googleplaytech.ui.activity.MainActivity;
 import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.ui.view.MyListView;
@@ -36,9 +40,25 @@ public class HomePageFragment extends BaseFragment {
     @Override
     public View onCreateSuccessView() {
         MyListView listView = new MyListView(UIUtils.getContext());
-        listView.setAdapter(new MyAdapter(data));
+
         HomeHeaderHolder headerHolder = new HomeHeaderHolder();
-        listView.addView(headerHolder.itemView);
+        //传递数据给HeaderHolder
+        headerHolder.setData(mPictures);
+        listView.addHeaderView(headerHolder.itemView);
+        listView.setAdapter(new MyAdapter(data));
+        //listView设置条目点击事件
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppInfo appInfo = data.get(position - 1);
+                if (appInfo!=null){
+                    Intent intent = new Intent(getContext(), AppDetailActivity.class);
+                    intent.putExtra("packageName",appInfo.packageName);
+                    getContext().startActivity(intent);
+                }
+
+            }
+        });
 //        listView.setDivider(null);
        /* TextView textView = new TextView(UIUtils.getContext());
         textView.setText(getClass().getSimpleName());*/

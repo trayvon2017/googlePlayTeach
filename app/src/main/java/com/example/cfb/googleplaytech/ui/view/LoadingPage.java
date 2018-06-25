@@ -139,7 +139,7 @@ public abstract class LoadingPage extends FrameLayout {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //请求数据,由子类完成
+                //请求数据,由子类完成,此处又使用loadingpage的类具体实现
                 LoadResult result = onLoad();
                 if (result != null){
                     int state = result.getState();
