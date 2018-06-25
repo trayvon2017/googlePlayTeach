@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:id="@+id/ll_1"
+        android:background="@drawable/classification_item_bg_selector"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@drawable/ic_default"
+            android:id="@+id/iv_icon_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:text="电子市场"
+            android:id="@+id/tv_name_1"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>>
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/classification_item_bg_selector"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@drawable/ic_default"
+            android:id="@+id/iv_icon_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:text="电子市场"
+            android:id="@+id/tv_name_2"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>>
+    <LinearLayout
+        android:id="@+id/ll_3"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/classification_item_bg_selector"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@drawable/ic_default"
+            android:id="@+id/iv_icon_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:text="电子市场"
+            android:id="@+id/tv_name_3"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>>
+
+</LinearLayout>

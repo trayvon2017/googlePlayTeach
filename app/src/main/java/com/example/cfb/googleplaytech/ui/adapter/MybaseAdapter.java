@@ -1,5 +1,6 @@
 package com.example.cfb.googleplaytech.ui.adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -32,6 +33,15 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
         if (position == mData.size()) {
             return ITEM_TYPE_MORE;
         }
+        return getItemType(position);
+    }
+
+    /**
+     * 以便于当条目类型增多的时候添加
+     * @param position
+     * @return
+     */
+    public int getItemType(int position){
         return ITEM_TYPE_NORMAL;
     }
 
@@ -61,13 +71,14 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
             // TODO: 2018/6/21 加载more的页面
             MoreHolder moreHolder = new MoreHolder(hasMore());
             if (hasMore()) {
+                Log.d("分类页", "hasMore()"+hasMore());
                 loadMore(moreHolder);
             }
             return moreHolder.itemView;
         } else {
             BaseHolder holder;
             if (convertView == null) {
-                holder = initHolder();
+                holder = initHolder(position);
                 convertView = holder.itemView;
             } else {
                 holder = (BaseHolder) convertView.getTag();
@@ -86,7 +97,7 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
         return true;
     }
 
-    public abstract BaseHolder initHolder();
+    public abstract BaseHolder initHolder(int position);
 
     private boolean isLoadingMore = false;
 

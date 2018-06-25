@@ -1,7 +1,6 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.cfb.googleplaytech.domain.AppInfo;
 import com.example.cfb.googleplaytech.http.protocol.AppPageProtocol;
@@ -11,8 +10,6 @@ import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.ui.view.MyListView;
 import com.example.cfb.googleplaytech.utils.UIUtils;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -48,7 +45,7 @@ public class ApplicationPageFragment extends BaseFragment {
         }
 
         @Override
-        public BaseHolder initHolder() {
+        public BaseHolder initHolder(int position) {
             return new AppPageHolder();
         }
 

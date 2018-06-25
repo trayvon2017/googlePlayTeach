@@ -1,9 +1,6 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
-import android.mtp.MtpConstants;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.cfb.googleplaytech.domain.SubjectInfo;
 import com.example.cfb.googleplaytech.http.protocol.SubjectPageProtocol;
@@ -15,8 +12,6 @@ import com.example.cfb.googleplaytech.ui.view.MyListView;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by cfb on 2018/6/20.
@@ -53,7 +48,7 @@ public class SubjectPageFragment extends BaseFragment {
         }
 
         @Override
-        public BaseHolder initHolder() {
+        public BaseHolder initHolder(int position) {
             return new SubjectPageHolder();
         }
 

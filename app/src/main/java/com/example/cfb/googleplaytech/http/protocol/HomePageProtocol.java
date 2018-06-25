@@ -13,6 +13,9 @@ import java.util.ArrayList;
  */
 
 public class HomePageProtocol extends BaseProtocol<ArrayList<AppInfo>> {
+
+    private ArrayList<String> mPictures;
+
     @Override
     protected String getKey() {
         return "home";
@@ -41,12 +44,23 @@ public class HomePageProtocol extends BaseProtocol<ArrayList<AppInfo>> {
                 appInfo.size = obj.getLong("size");
                 appInfo.stars = (float) obj.getDouble("stars");
                 apps.add(appInfo);
+
             }
+            JSONArray jsonArray1 = (JSONArray) jsonObject.get("picture");
+            mPictures = new ArrayList<>();
+            for (int i=0;i<jsonArray1.length();i++){
+                String picture = (String) jsonArray1.get(i);
+                mPictures.add(picture);
+            }
+
             return apps;
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
+    }
+    public ArrayList<String> getPictures(){
+        return mPictures;
     }
 }

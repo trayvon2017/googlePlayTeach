@@ -1,27 +1,17 @@
 package com.example.cfb.googleplaytech.ui.fragment;
 
 import android.os.SystemClock;
-import android.text.format.Formatter;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-import com.example.cfb.googleplaytech.R;
 import com.example.cfb.googleplaytech.domain.AppInfo;
-import com.example.cfb.googleplaytech.http.HttpHelper;
 import com.example.cfb.googleplaytech.http.protocol.HomePageProtocol;
 import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
+import com.example.cfb.googleplaytech.ui.Holder.HomeHeaderHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomePageHolder;
 import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.ui.view.MyListView;
-import com.example.cfb.googleplaytech.utils.BitmapHelper;
 import com.example.cfb.googleplaytech.utils.UIUtils;
-import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
 
@@ -33,12 +23,13 @@ public class HomePageFragment extends BaseFragment {
     String[] strs = new String[20];
 //    ArrayList<String> mArraylist = new ArrayList<String>();
     private ArrayList<AppInfo> data;
+    private ArrayList<String> mPictures;
 
     @Override
     public LoadingPage.LoadResult onLoad() {
         HomePageProtocol homePageProtocol = new HomePageProtocol();
         data = homePageProtocol.getData(0);
-
+        mPictures = homePageProtocol.getPictures();
         return checkData(data);
     }
 
@@ -46,6 +37,8 @@ public class HomePageFragment extends BaseFragment {
     public View onCreateSuccessView() {
         MyListView listView = new MyListView(UIUtils.getContext());
         listView.setAdapter(new MyAdapter(data));
+        HomeHeaderHolder headerHolder = new HomeHeaderHolder();
+        listView.addView(headerHolder.itemView);
 //        listView.setDivider(null);
        /* TextView textView = new TextView(UIUtils.getContext());
         textView.setText(getClass().getSimpleName());*/
@@ -59,7 +52,7 @@ public class HomePageFragment extends BaseFragment {
         }
 
         @Override
-        public BaseHolder initHolder() {
+        public BaseHolder initHolder(int position) {
             return new HomePageHolder();
         }
 
