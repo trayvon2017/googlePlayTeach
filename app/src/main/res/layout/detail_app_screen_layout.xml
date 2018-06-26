@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:padding="5dp"
+    android:background="#cccccc"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginRight="3dp"
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginRight="3dp"
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginRight="3dp"
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginRight="3dp"
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:src="@drawable/ic_default"
+        android:id="@+id/iv_detail_screen5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+</HorizontalScrollView>

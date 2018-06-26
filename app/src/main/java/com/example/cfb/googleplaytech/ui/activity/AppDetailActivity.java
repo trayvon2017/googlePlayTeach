@@ -9,8 +9,10 @@ import android.widget.FrameLayout;
 import com.example.cfb.googleplaytech.R;
 import com.example.cfb.googleplaytech.domain.AppInfo;
 import com.example.cfb.googleplaytech.http.protocol.DetailPageProtocol;
+import com.example.cfb.googleplaytech.ui.Holder.DetailAppDesHolder;
 import com.example.cfb.googleplaytech.ui.Holder.DetailAppInfoHolder;
 import com.example.cfb.googleplaytech.ui.Holder.DetailSafeInfoHolder;
+import com.example.cfb.googleplaytech.ui.Holder.DetailScreenHolder;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
@@ -26,6 +28,7 @@ public class AppDetailActivity extends BaseActivity {
     private FrameLayout mViewAppInfo;
     private FrameLayout mViewAppSafeInfo;
     private FrameLayout mViewAppScreen;
+    private FrameLayout mFlAppDes;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class AppDetailActivity extends BaseActivity {
      * @return
      */
     private  View onCreateSuccessView() {
+        //根布局
         View view = UIUtils.inflate(R.layout.app_detail_page_layout);
         //初始化appinfo部分
         mViewAppInfo = (FrameLayout) view.findViewById(R.id.fl_app_info);
@@ -83,8 +87,18 @@ public class AppDetailActivity extends BaseActivity {
         DetailSafeInfoHolder detailSafeInfoHolder = new DetailSafeInfoHolder();
         detailSafeInfoHolder.setData(data.safe);
         mViewAppSafeInfo.addView(detailSafeInfoHolder.mRootView);
+        //初始化预览图部分
+        mViewAppScreen = (FrameLayout) view.findViewById(R.id.fl_app_screen);
+        DetailScreenHolder detailScreenHolder = new DetailScreenHolder();
+        detailScreenHolder.setData(AppDetailActivity.this,data.screen);
+        mViewAppScreen.addView(detailScreenHolder.mRootView);
+        //初始化应用介绍部分
+        mFlAppDes = (FrameLayout) view.findViewById(R.id.fl_app_des);
+        DetailAppDesHolder detailAppDesHolder = new DetailAppDesHolder();
+        detailAppDesHolder.setData(data);
+        mFlAppDes.addView(detailAppDesHolder.mRootView);
 
-//        mViewAppScreen = (FrameLayout) view.findViewById(R.id.fl_app_screen);
+
         return view;
     }
     public void loadData(){

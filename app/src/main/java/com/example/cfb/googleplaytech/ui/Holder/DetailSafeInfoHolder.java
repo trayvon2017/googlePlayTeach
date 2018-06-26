@@ -1,5 +1,6 @@
 package com.example.cfb.googleplaytech.ui.Holder;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +35,7 @@ public class DetailSafeInfoHolder extends BaseHolder<ArrayList<AppInfo.SafeInfo>
     private ValueAnimator mShowAnimator;
     private ValueAnimator mHideAnimator;
     private LinearLayout.LayoutParams llDesParams;
+    private int measuredHeight;
 
     @Override
     protected View initItemView() {
@@ -61,6 +63,15 @@ public class DetailSafeInfoHolder extends BaseHolder<ArrayList<AppInfo.SafeInfo>
                 desIcons[i].setVisibility(GONE);
             }
         }
+        //布局设置完成,测量高度
+        llDetailDes.measure(0,0);
+        //测量到的最大高度
+        measuredHeight = llDetailDes.getMeasuredHeight();
+        //获取llDetailDes的布局参数,等待动画执行的时候控制布局
+        llDesParams = (LinearLayout.LayoutParams) llDetailDes.getLayoutParams();
+        //默认隐藏
+        llDesParams.height = 0;
+        llDetailDes.setLayoutParams(llDesParams);
         /*initAnimator(getDesMeasuredHeight());
                 llDesParams.height = 0;
         llDetailDes.setLayoutParams(llDesParams);*/
@@ -97,77 +108,76 @@ public class DetailSafeInfoHolder extends BaseHolder<ArrayList<AppInfo.SafeInfo>
         });
         //整个隐藏或者显示的des
         llDetailDes = (LinearLayout) mRootView.findViewById(R.id.ll_detail_safe_des);
-
-
-
         //指示器箭头
         ivIndicator = (ImageView) mRootView.findViewById(R.id.iv_detail_safe_indicator);
-//        初始化属性动画
+        /*初始化属性动画
         initAnimator(getDesMeasuredHeight());
-//                llDetailDes.setVisibility(GONE);
+                llDetailDes.setVisibility(GONE);
         llDesParams.height = 0;
-        llDetailDes.setLayoutParams(llDesParams);
+        llDetailDes.setLayoutParams(llDesParams);*/
     }
 
     /**
      * 控制safedes页面的显示或者隐藏
      */
     private void toogle() {
+        ValueAnimator animator;
+
         if (showDes){
             showDes = false;
             //隐藏safedes
-//            llDetailDes.setVisibility(GONE);
-            ivIndicator.setImageResource(R.drawable.arrow_down);
-            mHideAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int value = (int) valueAnimator.getAnimatedValue();
-                    llDesParams.height = value;
-                    Log.d(TAG, "onAnimationUpdate: 隐藏height:"+llDesParams.height);
-                    llDetailDes.setLayoutParams(llDesParams);
-                }
-            });
-            mHideAnimator.start();
-
+            animator = ValueAnimator.ofInt(measuredHeight,0);
         }else {
             showDes = true;
-//            llDetailDes.setVisibility(View.VISIBLE);
-            ivIndicator.setImageResource(R.drawable.arrow_up);
-            mShowAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    int value = (int) valueAnimator.getAnimatedValue();
-                    llDesParams.height = value;
-                    Log.d(TAG, "onAnimationUpdate: 显示height:"+llDesParams.height);
-
-                    llDetailDes.setLayoutParams(llDesParams);
-                }
-            });
-            mShowAnimator.start();
-
+            animator = ValueAnimator.ofInt(0,measuredHeight);
         }
+        animator.setDuration(200);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                //变化过程中的高度值,需要赋值给要操作变量的layoutParams
+                int value = (int) animation.getAnimatedValue();
+                llDesParams.height = value;
+                llDetailDes.setLayoutParams(llDesParams);
+            }
+        });
+        animator.start();
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (showDes){
+                    ivIndicator.setImageResource(R.drawable.arrow_up);
+                }else {
+                    ivIndicator.setImageResource(R.drawable.arrow_down);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 
-    /**
-     * 测量要显示或隐藏空间的高度
-     * @return
-     */
-    private int getDesMeasuredHeight(){
-        llDetailDes.measure(0,0);
-        int measuredHeight = llDetailDes.getMeasuredHeight();
-        //
-        llDesParams = (LinearLayout.LayoutParams) llDetailDes.getLayoutParams();
-        return measuredHeight;
-    }
-    /**
+
+   /* *//**
      * 初始化属性动画
-     */
+     *//*
     private void initAnimator(int measuredHeight){
         mShowAnimator = ValueAnimator.ofInt(0, measuredHeight);
         mShowAnimator.setDuration(2000);
         mHideAnimator = ValueAnimator.ofInt(measuredHeight, 0);
         mHideAnimator.setDuration(2000);
-    }
+    }*/
 
 }
