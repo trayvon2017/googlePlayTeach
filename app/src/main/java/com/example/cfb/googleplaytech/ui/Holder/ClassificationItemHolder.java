@@ -1,8 +1,6 @@
 package com.example.cfb.googleplaytech.ui.Holder;
 
-import android.graphics.Bitmap;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,8 +13,6 @@ import com.example.cfb.googleplaytech.utils.BitmapHelper;
 import com.example.cfb.googleplaytech.utils.StringUtils;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 import com.lidroid.xutils.BitmapUtils;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by cfb on 2018/6/25.
@@ -118,16 +114,16 @@ public class ClassificationItemHolder extends BaseHolder<ClassificationInfo>{
         imageViews = new ImageView[3];
         textViews = new TextView[3];
         linearLayouts = new LinearLayout[3];
-        imageViews[0] =  (ImageView) itemView.findViewById(R.id.iv_icon_1);
-        imageViews[1]= (ImageView) itemView.findViewById(R.id.iv_icon_2);
-        imageViews[2] = (ImageView) itemView.findViewById(R.id.iv_icon_3);
+        imageViews[0] =  (ImageView) mRootView.findViewById(R.id.iv_icon_1);
+        imageViews[1]= (ImageView) mRootView.findViewById(R.id.iv_icon_2);
+        imageViews[2] = (ImageView) mRootView.findViewById(R.id.iv_icon_3);
 
-        textViews[0] = (TextView) itemView.findViewById(R.id.tv_name_1);
-        textViews[1]= (TextView) itemView.findViewById(R.id.tv_name_2);
-        textViews[2] = (TextView) itemView.findViewById(R.id.tv_name_3);
+        textViews[0] = (TextView) mRootView.findViewById(R.id.tv_name_1);
+        textViews[1]= (TextView) mRootView.findViewById(R.id.tv_name_2);
+        textViews[2] = (TextView) mRootView.findViewById(R.id.tv_name_3);
 
-        linearLayouts[0] = (LinearLayout) itemView.findViewById(R.id.ll_1);
-        linearLayouts[1]= (LinearLayout) itemView.findViewById(R.id.ll_2);
-        linearLayouts[2] = (LinearLayout) itemView.findViewById(R.id.ll_3);
+        linearLayouts[0] = (LinearLayout) mRootView.findViewById(R.id.ll_1);
+        linearLayouts[1]= (LinearLayout) mRootView.findViewById(R.id.ll_2);
+        linearLayouts[2] = (LinearLayout) mRootView.findViewById(R.id.ll_3);
     }
 }

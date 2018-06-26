@@ -11,13 +11,13 @@ import static android.content.ContentValues.TAG;
  */
 
 public abstract class BaseHolder<T> {
-    public View itemView;
+    public View mRootView;
 
     public BaseHolder(){
         Log.d(TAG, "BaseHolder: "+getClass().getSimpleName());
-        itemView = initItemView();
+        mRootView = initItemView();
         findViewById();
-        itemView.setTag(this);
+        mRootView.setTag(this);
     }
 
     protected abstract View initItemView();

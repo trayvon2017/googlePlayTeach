@@ -68,7 +68,6 @@ public class MainActivity extends BaseActivity {
         @Override
         public BaseFragment getItem(int position) {
             BaseFragment baseFragment = FragmentFactory.creatFragment(position);
-            // TODO: 2018/6/23 测试0623
             Log.d("mainActivity", "getItem: fragment"+position+"-"+baseFragment);
             return baseFragment;
         }

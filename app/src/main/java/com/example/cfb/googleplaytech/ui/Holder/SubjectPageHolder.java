@@ -1,13 +1,10 @@
 package com.example.cfb.googleplaytech.ui.Holder;
 
-import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.cfb.googleplaytech.R;
-import com.example.cfb.googleplaytech.domain.AppInfo;
 import com.example.cfb.googleplaytech.domain.SubjectInfo;
 import com.example.cfb.googleplaytech.http.HttpHelper;
 import com.example.cfb.googleplaytech.utils.BitmapHelper;
@@ -41,8 +38,8 @@ public class SubjectPageHolder extends BaseHolder<SubjectInfo> {
 
     @Override
     public void findViewById() {
-        mSubjectImage = (ImageView) itemView.findViewById(R.id.iv_subject_pic);
-        mSubjectDes = (TextView) itemView.findViewById(R.id.tv_subject_des);
+        mSubjectImage = (ImageView) mRootView.findViewById(R.id.iv_subject_pic);
+        mSubjectDes = (TextView) mRootView.findViewById(R.id.tv_subject_des);
 
     }
 }

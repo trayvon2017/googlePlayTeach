@@ -47,11 +47,7 @@ public abstract class BaseFragment extends Fragment {
         if (list!=null){
             return LoadingPage.LoadResult.RESULT_SUCCESS;
         }
-       /* // TODO: 2018/6/22 加载数据
-        for (int i =0;i<20;i++){
-            strs[i] = "text数据"+i;
-            mArraylist.add("text数据"+i);
-        }*/
+
         return LoadingPage.LoadResult.RESULT_ERROR;
     }
 

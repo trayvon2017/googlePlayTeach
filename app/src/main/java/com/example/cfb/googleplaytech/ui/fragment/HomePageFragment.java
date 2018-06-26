@@ -11,7 +11,6 @@ import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomeHeaderHolder;
 import com.example.cfb.googleplaytech.ui.Holder.HomePageHolder;
 import com.example.cfb.googleplaytech.ui.activity.AppDetailActivity;
-import com.example.cfb.googleplaytech.ui.activity.MainActivity;
 import com.example.cfb.googleplaytech.ui.adapter.MybaseAdapter;
 import com.example.cfb.googleplaytech.ui.view.LoadingPage;
 import com.example.cfb.googleplaytech.ui.view.MyListView;
@@ -44,7 +43,7 @@ public class HomePageFragment extends BaseFragment {
         HomeHeaderHolder headerHolder = new HomeHeaderHolder();
         //传递数据给HeaderHolder
         headerHolder.setData(mPictures);
-        listView.addHeaderView(headerHolder.itemView);
+        listView.addHeaderView(headerHolder.mRootView);
         listView.setAdapter(new MyAdapter(data));
         //listView设置条目点击事件
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -20,7 +20,7 @@ public class ClassificationTitleHolder extends BaseHolder<ClassificationInfo> {
 
     @Override
     public void setData(ClassificationInfo classificationInfo) {
-        TextView textTitle =(TextView)itemView;
+        TextView textTitle =(TextView) mRootView;
         textTitle.setText(classificationInfo.title);
     }
 

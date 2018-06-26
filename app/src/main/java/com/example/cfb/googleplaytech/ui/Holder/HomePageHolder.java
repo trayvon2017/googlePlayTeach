@@ -1,6 +1,5 @@
 package com.example.cfb.googleplaytech.ui.Holder;
 
-import android.media.Rating;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,10 +44,10 @@ public class HomePageHolder extends BaseHolder<AppInfo> {
 
     @Override
     public void findViewById() {
-        mTvText = (TextView) itemView.findViewById(R.id.tv_app_name);
-        mTvAppSize = (TextView) itemView.findViewById(R.id.tv_app_size);
-        mDesc = (TextView) itemView.findViewById(R.id.tv_desc);
-        mRb = (RatingBar) itemView.findViewById(R.id.rb_app_rate);
-        mAppIcon = (ImageView) itemView.findViewById(R.id.iv_app_icon);
+        mTvText = (TextView) mRootView.findViewById(R.id.tv_app_name);
+        mTvAppSize = (TextView) mRootView.findViewById(R.id.tv_app_size);
+        mDesc = (TextView) mRootView.findViewById(R.id.tv_desc);
+        mRb = (RatingBar) mRootView.findViewById(R.id.rb_app_rate);
+        mAppIcon = (ImageView) mRootView.findViewById(R.id.iv_app_icon);
     }
 }

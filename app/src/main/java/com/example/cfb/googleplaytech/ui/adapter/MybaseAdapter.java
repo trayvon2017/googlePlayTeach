@@ -6,13 +6,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
 
-import com.example.cfb.googleplaytech.R;
 import com.example.cfb.googleplaytech.ui.Holder.BaseHolder;
 import com.example.cfb.googleplaytech.ui.Holder.MoreHolder;
-import com.example.cfb.googleplaytech.ui.fragment.HomePageFragment;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -68,18 +65,18 @@ public abstract class MybaseAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position) == ITEM_TYPE_MORE) {
-            // TODO: 2018/6/21 加载more的页面
+            // TODO: 2018/6/21 加载more的页面,貌似有重复加载的嫌疑
             MoreHolder moreHolder = new MoreHolder(hasMore());
             if (hasMore()) {
                 Log.d("分类页", "hasMore()"+hasMore());
                 loadMore(moreHolder);
             }
-            return moreHolder.itemView;
+            return moreHolder.mRootView;
         } else {
             BaseHolder holder;
             if (convertView == null) {
                 holder = initHolder(position);
-                convertView = holder.itemView;
+                convertView = holder.mRootView;
             } else {
                 holder = (BaseHolder) convertView.getTag();
             }

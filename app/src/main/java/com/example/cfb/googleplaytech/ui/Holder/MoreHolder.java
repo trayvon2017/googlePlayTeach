@@ -19,7 +19,7 @@ public class MoreHolder extends BaseHolder<Integer> {
     private TextView tvLoadingMoreError;
 
     public MoreHolder(boolean hasMore) {
-        itemView =initItemView();
+        mRootView =initItemView();
         findViewById();
         setData(hasMore ? STATE_HAVE_MORE : STATE_NO_MORE);
     }
@@ -54,7 +54,7 @@ public class MoreHolder extends BaseHolder<Integer> {
 
     @Override
     public void findViewById() {
-        llLoadingMore = (LinearLayout) itemView.findViewById(R.id.ll_loadingMore);
-        tvLoadingMoreError = (TextView) itemView.findViewById(R.id.tv_loadingmore_error);
+        llLoadingMore = (LinearLayout) mRootView.findViewById(R.id.ll_loadingMore);
+        tvLoadingMoreError = (TextView) mRootView.findViewById(R.id.tv_loadingmore_error);
     }
 }
