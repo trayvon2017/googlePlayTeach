@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by cfb on 2018/6/27.
@@ -35,54 +34,43 @@ public class MyFlowLayout extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    protected void onLayout(boolean changed, int left, int top, int right, int bootom) {
         if (mLines!=null&&mLines.size()>0){
+            left += getPaddingLeft();
+            top += getPaddingTop();
 
             for (int i=0;i<mLines.size();i++){
-                int preLinesHeight = 0;
-                for (int j=0;j<i;j++){
-                    //前面几行的高度和
-                    preLinesHeight += mLines.get(j).maxHeight;
-                }
-                //第一行的
-                //l+padding,
-                layout(i,l+getPaddingLeft(),t+getPaddingTop()+i*HORIZONTAL_SPACE+preLinesHeight,
-                        l+getPaddingLeft()+totalWidth,i*HORIZONTAL_SPACE+preLinesHeight+mLines.get(i).maxHeight);
+                //先写第一行的
+                layout(i,left,top);
+                top = top + mLines.get(i).maxHeight+VERTICAL_SPACE;
+
             }
 
         }
     }
 
     /**
-     *
-     * @param i 第i行
-     * @param l 当前行左上角的lauout l值
-     * @param t 当前行左上角的lauout t值
-     * @param r 当前行左上角的lauout r值
-     * @param b 当前行左上角的lauout b值
+     * line里面的子控件布局
+     * @param lineNum
+     * @param left
+     * @param top
      */
-    private void layout(int i, int l, int t, int r, int b) {
-        //未调整是首个子控件的l,t,r,b
-        //l+
-        Line line = mLines.get(i);
-        for (int j = 0;j< line.size();j++){
-            View child = line.getChildAt(j);
-            int childLeft = l+j*HORIZONTAL_SPACE+j*line.ofSetOfChild();
-            //当前子控件之前的控件的宽度和,不包含
-            for (int k =0;k<j;k++){
-                childLeft += line.getChildMeasuredWidth(j);
+    private void layout(int lineNum, int left, int top) {
+        //未调整是首个子控件的l,t
+        Line line = mLines.get(lineNum);
+        if (line.size()>0){
+            for (int i=0;i<line.size();i++){
+                //放置每一行的各个子控件的
+                View childView = line.getChildAt(i);
+                int measuredWidth = childView.getMeasuredWidth()+line.getWidthOffSet();//实际宽度
+                int measuredHeight = childView.getMeasuredHeight();
+                int topOffset = (line.maxHeight-measuredHeight)/2;
+                int widthMeasureSpec = MeasureSpec.makeMeasureSpec(measuredWidth, MeasureSpec.EXACTLY);
+                int heightMeasureSpec = MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY);
+                childView.measure(widthMeasureSpec,heightMeasureSpec);//测量
+                childView.layout(left,top+topOffset,left+measuredWidth,top+topOffset+measuredHeight);
+                left = left +measuredWidth+HORIZONTAL_SPACE;
             }
-            int childRight = childLeft+line.getChildMeasuredWidth(j)+line.ofSetOfChild();
-            int childTop = t+
-                    (line.maxHeight-getChildAt(i).getMeasuredHeight())/2;
-            int childBottom = childTop+getChildAt(i).getMeasuredHeight();
-            for (int index=0;index<i;i++){
-
-            }
-
-
-            child.layout(childLeft,,l+
-                    getPaddingLeft()+j*HORIZONTAL_SPACE+line.getChildMeasuredWidth(j),);
         }
     }
 
@@ -195,9 +183,8 @@ public class MyFlowLayout extends ViewGroup {
         View getChildAt(int index){
             return currentLine.get(index);
         }
-        int ofSetOfChild(){
+        int getWidthOffSet(){
             if (currentLine.size()==1){
-
                 return totalWidth-getChildMeasuredWidth(0);
             }else {
                 float v = (float) (totalWidth - getTotalWidth()) / size();
@@ -220,7 +207,6 @@ public class MyFlowLayout extends ViewGroup {
             total += HORIZONTAL_SPACE*(size()-1);
             return total;
         }
-        //// TODO: 2018/6/27   
-        int 
+
     }
 }

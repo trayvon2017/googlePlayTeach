@@ -8,8 +8,10 @@ import android.widget.FrameLayout;
 
 import com.example.cfb.googleplaytech.R;
 import com.example.cfb.googleplaytech.domain.AppInfo;
+import com.example.cfb.googleplaytech.domain.DownloadInfo;
 import com.example.cfb.googleplaytech.http.protocol.DetailPageProtocol;
 import com.example.cfb.googleplaytech.ui.Holder.DetailAppDesHolder;
+import com.example.cfb.googleplaytech.ui.Holder.DetailAppDownloadHolder;
 import com.example.cfb.googleplaytech.ui.Holder.DetailAppInfoHolder;
 import com.example.cfb.googleplaytech.ui.Holder.DetailSafeInfoHolder;
 import com.example.cfb.googleplaytech.ui.Holder.DetailScreenHolder;
@@ -29,6 +31,7 @@ public class AppDetailActivity extends BaseActivity {
     private FrameLayout mViewAppSafeInfo;
     private FrameLayout mViewAppScreen;
     private FrameLayout mFlAppDes;
+    private FrameLayout mFlAppDownload;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,6 +100,12 @@ public class AppDetailActivity extends BaseActivity {
         DetailAppDesHolder detailAppDesHolder = new DetailAppDesHolder();
         detailAppDesHolder.setData(data);
         mFlAppDes.addView(detailAppDesHolder.mRootView);
+        //初始化下载部分
+        mFlAppDownload = (FrameLayout) view.findViewById(R.id.fl_app_download);
+        DetailAppDownloadHolder detailAppDownloadHolder = new DetailAppDownloadHolder();
+        // appinfo转化成download设置给downloadHolder
+        detailAppDownloadHolder.setData(DownloadInfo.copyFromAppinfo(data));
+        mFlAppDownload.addView(detailAppDownloadHolder.mRootView);
 
 
         return view;

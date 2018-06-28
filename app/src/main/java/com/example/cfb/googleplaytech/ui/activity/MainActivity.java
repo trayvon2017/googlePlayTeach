@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 
 import com.example.cfb.googleplaytech.R;
+import com.example.cfb.googleplaytech.manager.ThreadManager;
 import com.example.cfb.googleplaytech.ui.fragment.BaseFragment;
 import com.example.cfb.googleplaytech.ui.fragment.FragmentFactory;
 import com.example.cfb.googleplaytech.ui.view.PagerTab;
@@ -25,7 +26,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showActionBarLogo();
-
         mPagerTab = (PagerTab) findViewById(R.id.pager_tab);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));

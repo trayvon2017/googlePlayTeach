@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.cfb.googleplaytech.R;
+import com.example.cfb.googleplaytech.manager.ThreadManager;
 import com.example.cfb.googleplaytech.utils.UIUtils;
 
 /**
@@ -136,7 +137,8 @@ public abstract class LoadingPage extends FrameLayout {
      * 请求数据,并根据返回值更新当前fragment的视图
      */
     public void loadData(){
-        new Thread(new Runnable() {
+        ThreadManager.ThreadPool threadPool = ThreadManager.getThreadPool();
+        threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 //请求数据,由子类完成,此处又使用loadingpage的类具体实现
@@ -152,7 +154,24 @@ public abstract class LoadingPage extends FrameLayout {
                     });
                 }
             }
-        }).start();
+        });
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //请求数据,由子类完成,此处又使用loadingpage的类具体实现
+                LoadResult result = onLoad();
+                if (result != null){
+                    int state = result.getState();
+                    currenrState = state;
+                    UIUtils.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showCorrect();
+                        }
+                    });
+                }
+            }
+        }).start();*/
     }
 
     /**

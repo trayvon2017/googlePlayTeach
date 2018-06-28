@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:text="收藏"
+        android:background="@drawable/detail_btn_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+
+        android:id="@+id/fl_detail_progress"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/progress_btn_normal">
+
+        <Button
+            android:id="@+id/btn_detail_download"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/progress_btn_normal"
+            android:text="下载" />
+    </FrameLayout>
+
+    <Button
+        android:text="分享"
+        android:background="@drawable/detail_btn_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+</LinearLayout>
