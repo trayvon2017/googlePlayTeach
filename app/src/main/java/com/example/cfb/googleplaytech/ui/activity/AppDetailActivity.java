@@ -104,7 +104,7 @@ public class AppDetailActivity extends BaseActivity {
         mFlAppDownload = (FrameLayout) view.findViewById(R.id.fl_app_download);
         DetailAppDownloadHolder detailAppDownloadHolder = new DetailAppDownloadHolder();
         // appinfo转化成download设置给downloadHolder
-        detailAppDownloadHolder.setData(DownloadInfo.copyFromAppinfo(data));
+        detailAppDownloadHolder.setData(data);
         mFlAppDownload.addView(detailAppDownloadHolder.mRootView);
 
 
