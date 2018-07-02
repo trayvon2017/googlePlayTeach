@@ -39,7 +39,7 @@ public class DetailAppDownloadHolder extends BaseHolder<AppInfo> implements View
             @Override
             public void onDownloadStateChanged(DownloadInfo info) {
                 if (info.id.equals(getData().id)){
-                    refreshUIOnMainThread(info.currentState,info.getProgress());
+                    refreshUIOnMainThread(info);
                 }
             }
 
@@ -50,7 +50,7 @@ public class DetailAppDownloadHolder extends BaseHolder<AppInfo> implements View
             @Override
             public void onDownloadProgress(DownloadInfo info) {
                 if (info.id.equals(getData().id)){
-                    refreshUIOnMainThread(info.currentState,info.getProgress());
+                    refreshUIOnMainThread(info);
                 }
             }
         });
@@ -143,14 +143,13 @@ public class DetailAppDownloadHolder extends BaseHolder<AppInfo> implements View
 
     /**
      * 主线程更新UI
-     * @param currentState
-     * @param progress
+     *
      */
-    public void refreshUIOnMainThread(final int currentState, final float progress){
+    public void refreshUIOnMainThread(final DownloadInfo info){
         UIUtils.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                refreshUI(currentState,progress);
+                refreshUI(info.currentState,info.getProgress());
             }
         });
     }
